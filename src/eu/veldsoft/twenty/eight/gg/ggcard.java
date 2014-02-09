@@ -1,18 +1,25 @@
-
-
-//
-
-
-
-
-//
-
-
-
-
-//
-
-
+/*******************************************************************************
+ *                                                                             *
+ * Twenty-Eight for Android is port of popular Asian card game called Rosanne: *
+ * Twenty-eight (28) <http://sourceforge.net/projects/rosanne/>. Project       *
+ * development is done as NBU Java training course held in Sofia, Bulgaria.    *
+ *                                                                             *
+ * Copyright (C) 2013-2014 by Todor Balabanov  ( tdb@tbsoft.eu )               *
+ *                                                                             *
+ * This program is free software: you can redistribute it and/or modify        *
+ * it under the terms of the GNU General Public License as published by        *
+ * the Free Software Foundation, either version 3 of the License, or           *
+ * (at your option) any later version.                                         *
+ *                                                                             *
+ * This program is distributed in the hope that it will be useful,             *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of              *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the               *
+ * GNU General Public License for more details.                                *
+ *                                                                             *
+ * You should have received a copy of the GNU General Public License           *
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.        *
+ *                                                                             *
+ ******************************************************************************/
 
 package eu.veldsoft.twenty.eight.gg;
 
@@ -25,40 +32,6 @@ package eu.veldsoft.twenty.eight.gg;
 //#include "wx/xrc/xmlres.h"
 //#include "wx/image.h"
 ////#include "wx/thread.h"
-//#define GG_CARD_CARD_COUNT 52
-
-//#define GG_CARD_SPADES 3
-//#define GG_CARD_HEARTS 2
-//#define GG_CARD_DIAMONDS 1
-//#define GG_CARD_CLUBS 0
-
-//#define GG_CARD_ACE 0
-//#define GG_CARD_TWO 1
-//#define GG_CARD_THREE 2
-//#define GG_CARD_FOUR 3
-//#define GG_CARD_FIVE 4
-//#define GG_CARD_SIX 5
-//#define GG_CARD_SEVEN 6
-//#define GG_CARD_EIGHT 7
-//#define GG_CARD_NINE 8
-//#define GG_CARD_TEN 9
-//#define GG_CARD_JACK 10
-//#define GG_CARD_QUEEN 11
-//#define GG_CARD_KING 12
-
-//#define GG_CARD_BACK_1 20
-//#define GG_CARD_BACK_2 21
-//#define GG_CARD_JOKER_1 30
-//#define GG_CARD_JOKER_2 31
-
-
-//#define GG_CARD_TOTAL_SUITS 4
-//#define GG_CARD_TOTAL_VALUES 13
-
-//#define GG_CARD_WIDTH 71
-//#define GG_CARD_HEIGHT 96
-
-//#define GG_CARD_XRS ("cards.xrs")
 
 class ggCard:public wxObject
 {
@@ -234,7 +207,7 @@ boolean ggCard.LoadFace(String res_name)
 	wxBitmap bmp_temp1, bmp_temp2;
 	wxImage img_mask, img_face;
 	wxMemoryDC mdc1, mdc2;
-	wxColour col_mask(*wxWHITE);
+	Color col_mask(*wxWHITE);
 
 	assert(!res_name.IsEmpty());
 

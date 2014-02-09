@@ -1,18 +1,25 @@
-
-
-//
-
-
-
-
-//
-
-
-
-
-//
-
-
+/*******************************************************************************
+ *                                                                             *
+ * Twenty-Eight for Android is port of popular Asian card game called Rosanne: *
+ * Twenty-eight (28) <http://sourceforge.net/projects/rosanne/>. Project       *
+ * development is done as NBU Java training course held in Sofia, Bulgaria.    *
+ *                                                                             *
+ * Copyright (C) 2013-2014 by Todor Balabanov  ( tdb@tbsoft.eu )               *
+ *                                                                             *
+ * This program is free software: you can redistribute it and/or modify        *
+ * it under the terms of the GNU General Public License as published by        *
+ * the Free Software Foundation, either version 3 of the License, or           *
+ * (at your option) any later version.                                         *
+ *                                                                             *
+ * This program is distributed in the hope that it will be useful,             *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of              *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the               *
+ * GNU General Public License for more details.                                *
+ *                                                                             *
+ * You should have received a copy of the GNU General Public License           *
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.        *
+ *                                                                             *
+ ******************************************************************************/
 
 package eu.veldsoft.twenty.eight.ra;
 
@@ -28,30 +35,6 @@ package eu.veldsoft.twenty.eight.ra;
 //#include "ra/raconfig.h"
 //#include "gg/ggpanel.h"
 //#include "gg/ggcard.h"
-
-////#define raGAME_PLAY_TILL_END 0
-
-//#define raTOTAL_CARD_BACKS 2
-//#define raMAX_CARDS_PER_HAND 8
-//#define raCARD_VERT_RELIEF (12)
-//#define raCARD_HORZ_RELIEF (GG_CARD_WIDTH / 4)
-//#define raCARD_PANEL_RELIEF 20
-
-//#define raGAME_CARD_BACK_SEL 0
-
-//#define raGAME_ARROW_RELIEF 8
-
-//#define raGAME_FOUR_JACKS (0x80808080)
-//#define raGAME_ALL_LOW_CARDS (0x0F0F0F0F)
-//#define raGAME_ALL_HIGH_CARDS (0xF0F0F0F0)
-
-
-// For testing purposes
-//#define raTEST_DATA_FILE ("ra_test_data.ini")
-//#define raTEXT_SEED ("rand/seed")
-//#define raTEXT_IDX ("rand/idx")
-//#define raTEXT_DEALER ("deal/dealer")
-//#define raTEXT_DEAL_ROUND ("deal_round")
 
 
 

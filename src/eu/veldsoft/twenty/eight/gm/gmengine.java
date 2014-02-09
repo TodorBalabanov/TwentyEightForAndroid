@@ -1,18 +1,25 @@
-
-
-//
-
-
-
-
-//
-
-
-
-
-//
-
-
+/*******************************************************************************
+ *                                                                             *
+ * Twenty-Eight for Android is port of popular Asian card game called Rosanne: *
+ * Twenty-eight (28) <http://sourceforge.net/projects/rosanne/>. Project       *
+ * development is done as NBU Java training course held in Sofia, Bulgaria.    *
+ *                                                                             *
+ * Copyright (C) 2013-2014 by Todor Balabanov  ( tdb@tbsoft.eu )               *
+ *                                                                             *
+ * This program is free software: you can redistribute it and/or modify        *
+ * it under the terms of the GNU General Public License as published by        *
+ * the Free Software Foundation, either version 3 of the License, or           *
+ * (at your option) any later version.                                         *
+ *                                                                             *
+ * This program is distributed in the hope that it will be useful,             *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of              *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the               *
+ * GNU General Public License for more details.                                *
+ *                                                                             *
+ * You should have received a copy of the GNU General Public License           *
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.        *
+ *                                                                             *
+ ******************************************************************************/
 
 package eu.veldsoft.twenty.eight.gm;
 
@@ -77,22 +84,6 @@ enum{
 	gmERR_TRICK_CARD_NOT_IN_HAND
 };
 
-//#define	gmRULE_1 1
-//#define	gmRULE_2 2
-//#define	gmRULE_3 4
-//#define	gmRULE_4 8
-// Sluffing of jacks
-//#define	gmRULE_5 16
-
-//#define gmDEAL_ROUND_1 0
-//#define gmDEAL_ROUND_2 1
-
-//#define raBID_ROUND_3 2
-
-//#define gmFOUR_JACKS 0x80808080
-//#define gmJACK 0x80
-//#define gmALL_CARDS 0xFFFFFFFF
-
 class tagGM_RULES
 {
 	int rot_addn;
@@ -113,10 +104,6 @@ class tagGM_TRICK{
 	int winner;
 	//boolean wait;
 } gmTrick, *pgmTrick;
-
-//#define gmNext(X) ((X + m_data.rules.rot_addn) % gmTOTAL_PLAYERS)
-//#define gmTrickNext ((m_data.tricks[m_data.trick_round].lead_loc + (m_data.tricks[m_data.trick_round].count * m_data.rules.rot_addn)) % 4)
-//#define gmWinnerCard (m_data.tricks[m_data.trick_round].cards[m_data.tricks[m_data.trick_round].winner])
 
 class tagGM_OUTPUT_DEAL_INFO
 {

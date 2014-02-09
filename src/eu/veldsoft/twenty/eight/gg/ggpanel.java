@@ -1,18 +1,25 @@
-
-
-//
-
-
-
-
-//
-
-
-
-
-//
-
-
+/*******************************************************************************
+ *                                                                             *
+ * Twenty-Eight for Android is port of popular Asian card game called Rosanne: *
+ * Twenty-eight (28) <http://sourceforge.net/projects/rosanne/>. Project       *
+ * development is done as NBU Java training course held in Sofia, Bulgaria.    *
+ *                                                                             *
+ * Copyright (C) 2013-2014 by Todor Balabanov  ( tdb@tbsoft.eu )               *
+ *                                                                             *
+ * This program is free software: you can redistribute it and/or modify        *
+ * it under the terms of the GNU General Public License as published by        *
+ * the Free Software Foundation, either version 3 of the License, or           *
+ * (at your option) any later version.                                         *
+ *                                                                             *
+ * This program is distributed in the hope that it will be useful,             *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of              *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the               *
+ * GNU General Public License for more details.                                *
+ *                                                                             *
+ * You should have received a copy of the GNU General Public License           *
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.        *
+ *                                                                             *
+ ******************************************************************************/
 
 package eu.veldsoft.twenty.eight.gg;
 
@@ -46,7 +53,7 @@ public:
 		wxCoord width, wxCoord height, wxDC* source, wxCoord xsrc,
 		wxCoord ysrc, int logicalFunc = wxCOPY, boolean useMask = false,
 		wxCoord xsrcMask = -1, wxCoord ysrcMask = -1);
-	boolean DrawTextOnBack(String text, wxPoint pt, wxColour colour = wxnullColour, wxFont font = wxnullFont);
+	boolean DrawTextOnBack(String text, wxPoint pt, Color colour = wxnullColour, wxFont font = wxnullFont);
 	boolean ClearDifference();
 	//boolean DrawBack();
 };
@@ -248,7 +255,7 @@ boolean ggPanel.BlitToFront(wxCoord xdest, wxCoord ydest,
 	return true;
 }
 
-boolean ggPanel.DrawTextOnBack(String text, wxPoint pt, wxColour colour, wxFont font)
+boolean ggPanel.DrawTextOnBack(String text, wxPoint pt, Color colour, wxFont font)
 {
 	int x, y;
 	wxMemoryDC bdc, wdc;

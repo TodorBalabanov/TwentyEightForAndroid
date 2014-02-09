@@ -1,18 +1,25 @@
-
-
-//
-
-
-
-
-//
-
-
-
-
-//
-
-
+/*******************************************************************************
+ *                                                                             *
+ * Twenty-Eight for Android is port of popular Asian card game called Rosanne: *
+ * Twenty-eight (28) <http://sourceforge.net/projects/rosanne/>. Project       *
+ * development is done as NBU Java training course held in Sofia, Bulgaria.    *
+ *                                                                             *
+ * Copyright (C) 2013-2014 by Todor Balabanov  ( tdb@tbsoft.eu )               *
+ *                                                                             *
+ * This program is free software: you can redistribute it and/or modify        *
+ * it under the terms of the GNU General Public License as published by        *
+ * the Free Software Foundation, either version 3 of the License, or           *
+ * (at your option) any later version.                                         *
+ *                                                                             *
+ * This program is distributed in the hope that it will be useful,             *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of              *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the               *
+ * GNU General Public License for more details.                                *
+ *                                                                             *
+ * You should have received a copy of the GNU General Public License           *
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.        *
+ *                                                                             *
+ ******************************************************************************/
 
 package eu.veldsoft.twenty.eight.ra;
 
@@ -21,27 +28,6 @@ package eu.veldsoft.twenty.eight.ra;
 
 //#include "ra/racommon.h"
 //#include "wx/config.h"
-
-//#define raCONFPATH_APP_DATA_X ("application/x")
-//#define raCONFPATH_APP_DATA_Y ("application/y")
-//#define raCONFPATH_APP_DATA_WIDTH ("application/width")
-//#define raCONFPATH_APP_DATA_HEIGHT ("application/height")
-//#define raCONFPATH_APP_DATA_MAX ("application/maximized")
-
-//#define raCONFPATH_GAME_DATA_CLOCK ("game/clockwise")
-//#define raCONFPATH_GAME_DATA_MINBID3 ("game/minbid3")
-//#define raCONFPATH_GAME_DATA_WAIVERULE4 ("game/waiverule4")
-//#define raCONFPATH_GAME_DATA_SLUFFJACKS ("game/sluffjacks")
-
-//#define raCONFPATH_PREFS_PLAYCARDON ("preferences/playcardon")
-//#define raCONFPATH_PREFS_CARDBACK ("preferences/cardback")
-//#define raCONFPATH_PREFS_AUTOPLAYSINGLE ("preferences/autoplaysingle")
-//#define raCONFPATH_PREFS_BIDBUBBLES ("preferences/bidbubbles")
-
-//#define raCONFIG_PREFS_PLAYCARDON_SCLICK 0
-//#define raCONFIG_PREFS_PLAYCARDON_DCLICK 1
-//#define raCONFIG_PREFS_CARDBACK_BLUE 0
-//#define raCONFIG_PREFS_CARDBACK_RED 1
 
 class tag_RA_CONF_APP_DATA
 {
