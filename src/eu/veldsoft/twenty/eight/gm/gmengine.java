@@ -39,10 +39,7 @@ package eu.veldsoft.twenty.eight.gm;
 ////#include "ra/racommon.h"
 //#include "gm/gmutil.h"
 
-
-
-enum
-{
+enum {
 	gmSTATUS_NOT_STARTED = 0,
 	gmSTATUS_DEAL1,
 	gmSTATUS_BID1,
@@ -53,7 +50,7 @@ enum
 	gmSTATUS_TRUMPSEL2,
 	gmSTATUS_TRICKS,
 	gmSTATUS_FINISHED
-};
+}
 
 enum{
 	gmOUTPUT_INVALID = -1,
@@ -72,6 +69,7 @@ enum{
 	gmINPUT_TRUMPSEL,
 	gmINPUT_TRICK
 };
+
 enum{
 	gmERR_CANNOT_PASS = 1,
 	gmERR_BID_LESS_THAN_MIN,
@@ -186,7 +184,7 @@ class tagGM_ENGINE_DATA
 	// Related to tricks
 	int pts[gmTOTAL_TEAMS];
 	int trick_round;
-	gmTrick tricks[gmTOTAL_TRICKS];
+	gmTrick tricks[] = new gmTrick[gmTOTAL_TRICKS];
 	long played_cards[gmTOTAL_PLAYERS];
 	boolean should_trump;
 	boolean should_play_trump_card;
@@ -199,7 +197,7 @@ class tagGM_ENGINE_DATA
 	gmInputBidInfo in_bid_info;
 	gmInputTrumpselInfo in_trumpsel_info;
 	gmInputTrickInfo in_trick_info;
-} gmEngineData;
+}
 
 /*class tagGM_OUPUT
 {
@@ -900,7 +898,7 @@ boolean gmEngine.Continue()
 					)
 				{
 					if(
-						!(m_data.hands[gmTrickNext] &
+						!(m_data.hands[gmTrickNext(m_data)] &
 						gmUtil.m_suit_mask[m_data.tricks[m_data.trick_round].lead_suit])
 						)
 					{
@@ -914,9 +912,9 @@ boolean gmEngine.Continue()
 				// 3. and he does not have any card in his hand
 
 				if(
-					(gmTrickNext == m_data.curr_max_bidder) &&
+					(gmTrickNext(m_data) == m_data.curr_max_bidder) &&
 					!m_data.trump_shown &&
-					!m_data.hands[gmTrickNext]
+					!m_data.hands[gmTrickNext(m_data)]
 					)
 						m_data.in_trick_info.can_ask_trump = true;
 			}
@@ -928,7 +926,7 @@ boolean gmEngine.Continue()
 			rules = 0;
 			m_data.in_trick_info.mask = GenerateMask(&rules);
 			m_data.in_trick_info.rules = rules;
-			m_data.in_trick_info.player = gmTrickNext;
+			m_data.in_trick_info.player = gmTrickNext(m_data);
 
 			// If the player has no card which matches
 			// the mask, player can play any card
@@ -1223,7 +1221,7 @@ int gmEngine.PostInputMessage(int input_type, void *input)
 				if(m_data.tricks[m_data.trick_round].trumped)
 				{
 					// check for over trumping
-					if(gmGetValue(in_trick_info.card) > gmGetValue(gmWinnerCard))
+					if(gmGetValue(in_trick_info.card) > gmGetValue(gmWinnerCard(m_data)))
 					{
 						m_data.tricks[m_data.trick_round].winner = exist_trick_info.player;
 					}
@@ -1239,7 +1237,7 @@ int gmEngine.PostInputMessage(int input_type, void *input)
 					// then check whether we have a new winner
 					if(m_data.tricks[m_data.trick_round].lead_suit == m_data.trump_suit)
 					{
-						if(gmGetValue(in_trick_info.card) > gmGetValue(gmWinnerCard))
+						if(gmGetValue(in_trick_info.card) > gmGetValue(gmWinnerCard(m_data)))
 						{
 							m_data.tricks[m_data.trick_round].winner = exist_trick_info.player;
 						}
@@ -1257,7 +1255,7 @@ int gmEngine.PostInputMessage(int input_type, void *input)
 				// check if we have a new trump
 				else if(
 					(m_data.trump_suit == m_data.tricks[m_data.trick_round].lead_suit) &&
-					(gmGetValue(in_trick_info.card) > gmGetValue(gmWinnerCard))
+					(gmGetValue(in_trick_info.card) > gmGetValue(gmWinnerCard(m_data)))
 					)
 				{
 					m_data.tricks[m_data.trick_round].winner = exist_trick_info.player;
@@ -1271,7 +1269,7 @@ int gmEngine.PostInputMessage(int input_type, void *input)
 				// check whether we have a new winner
 				if(
 					(gmGetSuit(in_trick_info.card) == m_data.tricks[m_data.trick_round].lead_suit) &&
-					(gmGetValue(in_trick_info.card) > gmGetValue(gmWinnerCard)) &&
+					(gmGetValue(in_trick_info.card) > gmGetValue(gmWinnerCard(m_data))) &&
 					!m_data.tricks[m_data.trick_round].trumped
 					)
 				{
@@ -1550,7 +1548,7 @@ int gmEngine.GetTrickNextToPlay()
 	if(m_data.tricks[m_data.trick_round].count == gmTOTAL_PLAYERS)
 		return gmPLAYER_INVALID;
 
-	return gmTrickNext;
+	return gmTrickNext(m_data);
 }
 
 void gmEngine.SetMinBid(int round, int bid)
@@ -1598,7 +1596,7 @@ long gmEngine.GenerateMask(long *rules)
 	if(
 		!m_data.tricks[m_data.trick_round].count &&
 		!m_data.trump_shown &&
-		(gmTrickNext == m_data.curr_max_bidder))
+		(gmTrickNext(m_data) == m_data.curr_max_bidder))
 	{
 		assert(m_data.trump_suit != gmSUIT_INVALID);
 		mask = ~(gmUtil.m_suit_mask[m_data.trump_suit]);

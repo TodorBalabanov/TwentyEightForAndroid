@@ -36,16 +36,16 @@ class RA_AI_MOVE
 	int card;
 	boolean ask_trump;
 	int rank;
-}aiMove;
+}
 
 class RA_AI_EVAL
 {
 	int eval;
 	int count;
 	boolean valid;
-} aiEval;
+}
 
-class aiAgent
+public class aiAgent
 {
 private:
 	// Disallow copy constructor/assignment operators

@@ -23,6 +23,8 @@
 
 package eu.veldsoft.twenty.eight.ai;
 
+import eu.veldsoft.twenty.eight.common.GlobalSpace;
+
 //#ifndef _AI_SUITLENGTHSOLVER_H_
 //#define _AI_SUITLENGTHSOLVER_H_
 ////#include <assert.h>
@@ -32,16 +34,14 @@ package eu.veldsoft.twenty.eight.ai;
 
 // Super type for holding suit length for hands
 
-typedef int  slMatrix[slTOTAL_HANDS][slTOTAL_SUITS];
+class slMatrix { static public int values[][] = new int[GlobalSpace.slTOTAL_HANDS][GlobalSpace.slTOTAL_SUITS]; }
 
 // The data which represents played cards, which is provided as one of the inputs to the
 // suit length solver. The format is identical to that of slProblem
-
-typedef slMatrix slPlayed;
+class slPlayed extends slMatrix {} 
 
 // Solution to the problem
-
-typedef slMatrix slSolution;
+class slSolution extends slMatrix {}
 
 // The data which represents the problem which is provided as one of the inputs to the
 // suit length solver.
@@ -49,8 +49,8 @@ typedef slMatrix slSolution;
 class slPROBLEM
 {
 	slMatrix suit_length;
-	int suit_total_length[slTOTAL_SUITS];
-	int hand_total_length[slTOTAL_HANDS];
+	int suit_total_length[GlobalSpace.slTOTAL_SUITS];
+	int hand_total_length[GlobalSpace.slTOTAL_HANDS];
 }slProblem;
 
 // Working data for computing the solution.

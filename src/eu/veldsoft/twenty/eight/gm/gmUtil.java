@@ -23,6 +23,9 @@
 
 package eu.veldsoft.twenty.eight.gm;
 
+import static eu.veldsoft.twenty.eight.common.GlobalSpace;
+import eu.veldsoft.twenty.eight.common.GlobalSpace;
+
 //#ifndef _GMUTIL_H_
 //#define _GMUTIL_H_
 
@@ -36,28 +39,134 @@ package eu.veldsoft.twenty.eight.gm;
 //#include "wx/wx.h"
 //#endif
 
-class gmUtil
-{
-public:
-	static int m_value_trans[];
-	static void ShuffleArray(int *array, long n);
-	static String PrintLong(long cards);
-	static String PrintHands(long *hands);
-	static String m_suits[];
-	static String m_values[];
-	static String m_short_locs[];
-	static String m_long_locs[];
-	static long m_suit_mask[];
-	static long m_suit_rs[];
-	static int m_points[];
-	static int m_total_points[];
-	static String m_short_teams[];
-	static int GetCardIndex(String text);
-	static boolean SetStatusText(final String& text, int i = 0);
-	static int BitsSetTable256[];
-	static int LogTable256[];
-	static long CountBitsSet(long v);
-	static long HighestBitSet(long v);
+public class gmUtil {
+	public static int m_value_trans[];
+	public static void ShuffleArray(int array[], long n){}
+	
+	public static String PrintLong(long cards) {	
+		int i;
+		String out, last;
+	
+		//wxLogDebug(String.Format("Cards = %lu", cards));
+	
+		out = ("");
+		//wxLogDebug(String.Format("%s%s", m_suits[highest / 8], m_values[highest % 8]));
+		for(i = 0; i < 32; i++)
+		{
+			if((cards & (1 << i)) != 0)
+				out = out + m_suits[i / 8] + m_values[i % 8] + (",");
+		}
+		if(!out.isEmpty())
+		{
+			last = out.substring(0, out.length() - 1);
+		}
+	
+		return last;
+	}
+	
+	public static String PrintHands(long hands[]) {
+		String ret_val;
+		String last;
+		String out;
+		long temp;
+		int i, j;
+
+		ret_val = "";
+
+		// Print North first
+		//wxLogMessage(SPACES20 + m_long_locs[2]);
+		ret_val += GlobalSpace.SPACES20 + m_long_locs[2];
+		ret_val += "\n";
+
+		for (i = 0; i < 4; i++)
+		{
+			temp = (hands[2] & m_suit_mask[i]) >> m_suit_rs[i];
+			out = String.Format(("%s - "), m_suits[i]);
+			for(j = 7; j >= 0; j--)
+			{
+				if((temp & (1 << j)) != 0)
+					out = out + m_values[j % 8] + (",");
+			}
+
+			last = out.Left(out.length() - 1);
+			//wxLogMessage(SPACES20 + final);
+			ret_val.Append(GlobalSpace.SPACES20 + last);
+			ret_val.Append(("\n"));
+		}
+
+		// Print East and West in the same line :D
+		//wxLogMessage(String.Format("%-40s%-40s", m_long_locs[1], m_long_locs[3]));
+		ret_val.Append(String.Format(("%-40s%-40s"), m_long_locs[1].c_str(), m_long_locs[3].c_str()));
+		ret_val.Append(("\n"));
+
+		for (i = 0; i < 4; i++)
+		{
+			temp = (hands[1] & m_suit_mask[i]) >> m_suit_rs[i];
+			out = String.Format(("%s - "), m_suits[i].c_str());
+			//for(j = 0; j < 8; j++)
+			for(j = 7; j >= 0; j--)
+			{
+				if(temp & (1 << j))
+					out = out + m_values[j % 8] + _(",");
+			}
+
+			last = String.Format(("%-40s"), out.Left(out.Length() - 1).c_str());
+
+			temp = (hands[3] & m_suit_mask[i]) >> m_suit_rs[i];
+			out = String.Format(("%s - "), m_suits[i].c_str());
+			//for(j = 0; j < 8; j++)
+			for(j = 7; j >= 0; j--)
+			{
+				if(temp & (1 << j))
+					out = out + m_values[j % 8] + _(",");
+			}
+
+			last += String.Format(("%-40s"), out.Left(out.Length() - 1).c_str());
+
+			//wxLogMessage(final);
+			ret_val.Append(last);
+			ret_val.Append(("\n"));
+		}
+
+		// Finally print South
+		//wxLogMessage(SPACES20 + m_long_locs[0]);
+		ret_val.Append(SPACES20 + m_long_locs[0]);
+		ret_val.Append(("\n"));
+
+		for (i = 0; i < 4; i++)
+		{
+			temp = (hands[0] & m_suit_mask[i]) >> m_suit_rs[i];
+			out = String.Format(("%s - "), m_suits[i].c_str());
+			//for(j = 0; j < 8; j++)
+			for(j = 7; j >= 0; j--)
+			{
+				if(temp & (1 << j))
+					out = out + m_values[j % 8] + _(",");
+			}
+
+			last = out.Left(out.Length() - 1);
+			//wxLogMessage(SPACES20 + final);
+			ret_val.Append(SPACES20 + last);
+			ret_val.Append(("\n"));
+		}
+		return ret_val;
+	}
+	
+	public static String m_suits[];
+	public static String m_values[];
+	public static String m_short_locs[];
+	public static String m_long_locs[];
+	public static int m_suit_mask[];
+	public static long m_suit_rs[];
+	public static int m_points[];
+	public static int m_total_points[];
+	public static String m_short_teams[];
+	public static int GetCardIndex(String text) {return 0}
+	public static boolean SetStatusText(final String& text, int i = 0);
+	public static int BitsSetTable256[];
+	public static int LogTable256[];
+	public static long CountBitsSet(long v) {}
+	public static long HighestBitSet(long v) {}
 };
 
 //#endif
@@ -193,116 +302,6 @@ void gmUtil.ShuffleArray(int *array, long n)
 			array[i] = t;
 		}
 	}
-}
-
-String gmUtil.PrintLong(long cards)
-{
-	long i;
-	String out, final;
-
-	//wxLogDebug(String.Format("Cards = %lu", cards));
-
-	out = _("");
-	//wxLogDebug(String.Format("%s%s", m_suits[highest / 8], m_values[highest % 8]));
-	for(i = 0; i < 32; i++)
-	{
-		if(cards & (1 << i))
-			out = out + m_suits[i / 8] + m_values[i % 8] + _(",");
-	}
-	if(!out.IsEmpty())
-	{
-		final = out.Left(out.Length() - 1);
-	}
-
-	return final;
-}
-String gmUtil.PrintHands(long *hands)
-{
-	String ret_val;
-	String final;
-	String out;
-	long temp;
-	int i, j;
-
-	ret_val.Clear();
-
-	// Print North first
-	//wxLogMessage(SPACES20 + m_long_locs[2]);
-	ret_val.Append(SPACES20 + m_long_locs[2]);
-	ret_val.Append(("\n"));
-
-	for (i = 0; i < 4; i++)
-	{
-		temp = (hands[2] & m_suit_mask[i]) >> m_suit_rs[i];
-		out = String.Format(("%s - "), m_suits[i].c_str());
-		for(j = 7; j >= 0; j--)
-		{
-			if(temp & (1 << j))
-				out = out + m_values[j % 8] + _(",");
-		}
-
-		final = out.Left(out.Length() - 1);
-		//wxLogMessage(SPACES20 + final);
-		ret_val.Append(SPACES20 + final);
-		ret_val.Append(("\n"));
-	}
-
-	// Print East and West in the same line :D
-	//wxLogMessage(String.Format("%-40s%-40s", m_long_locs[1], m_long_locs[3]));
-	ret_val.Append(String.Format(("%-40s%-40s"), m_long_locs[1].c_str(), m_long_locs[3].c_str()));
-	ret_val.Append(("\n"));
-
-	for (i = 0; i < 4; i++)
-	{
-		temp = (hands[1] & m_suit_mask[i]) >> m_suit_rs[i];
-		out = String.Format(("%s - "), m_suits[i].c_str());
-		//for(j = 0; j < 8; j++)
-		for(j = 7; j >= 0; j--)
-		{
-			if(temp & (1 << j))
-				out = out + m_values[j % 8] + _(",");
-		}
-
-		final = String.Format(("%-40s"), out.Left(out.Length() - 1).c_str());
-
-		temp = (hands[3] & m_suit_mask[i]) >> m_suit_rs[i];
-		out = String.Format(("%s - "), m_suits[i].c_str());
-		//for(j = 0; j < 8; j++)
-		for(j = 7; j >= 0; j--)
-		{
-			if(temp & (1 << j))
-				out = out + m_values[j % 8] + _(",");
-		}
-
-		final += String.Format(("%-40s"), out.Left(out.Length() - 1).c_str());
-
-		//wxLogMessage(final);
-		ret_val.Append(final);
-		ret_val.Append(("\n"));
-	}
-
-	// Finally print South
-	//wxLogMessage(SPACES20 + m_long_locs[0]);
-	ret_val.Append(SPACES20 + m_long_locs[0]);
-	ret_val.Append(("\n"));
-
-	for (i = 0; i < 4; i++)
-	{
-		temp = (hands[0] & m_suit_mask[i]) >> m_suit_rs[i];
-		out = String.Format(("%s - "), m_suits[i].c_str());
-		//for(j = 0; j < 8; j++)
-		for(j = 7; j >= 0; j--)
-		{
-			if(temp & (1 << j))
-				out = out + m_values[j % 8] + _(",");
-		}
-
-		final = out.Left(out.Length() - 1);
-		//wxLogMessage(SPACES20 + final);
-		ret_val.Append(SPACES20 + final);
-		ret_val.Append(("\n"));
-	}
-	return ret_val;
 }
 
 int gmUtil.GetCardIndex(String text)
